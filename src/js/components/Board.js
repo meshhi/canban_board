@@ -35,13 +35,18 @@ export class Board {
 
     mouseUpHandler = (e) => {
         if (!this.draggingElement) return;
+        if(e.target.classList.contains('task-list')) {
+            e.target.appendChild(this.draggingElement);
+        };
         this.draggingElement.classList.remove('dragging');
         this.draggingElement = undefined;
     }
 
     mouseMoveHandler = (e) => {
         if (!this.draggingElement) return;
-        console.log(e)
+        document.body.style.userSelect = 'none'
+        this.draggingElement.style.left = e.screenX + 'px';
+        this.draggingElement.style.top = e.screenY + 'px';
     }
 
     addDragAndDrop = () => {
