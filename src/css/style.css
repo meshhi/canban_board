@@ -56,7 +56,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* box-sizing: content-box; */
 }
 
 .add-task-btn {
@@ -70,9 +69,25 @@ body {
 
 .task {
     width: 100%;
-    min-height: 100px;
+    min-height: 150px;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: rgba(9, 30, 66, 0.15) 0px 0.1rem 0.1rem 0px;
     margin-bottom: 3%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+
+}
+
+.task-text {
+    grid-row: 2;
+    grid-column: 1 / 5;
+    background-color: green;
+}
+
+.task-delete-btn {
+    grid-row: 1;
+    grid-column: 4;
+    background-color: red;
 }
