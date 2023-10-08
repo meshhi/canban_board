@@ -21,11 +21,18 @@ body {
     height: 90%;
     border: 1px solid #e0e0e0;
     flex: 1;
-    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-list {
+    width: 95%;
+    height: 90%;
+    overflow: auto;
+    flex: 9;
 }
 
 .add-task-btn {
-    width: 200px;
-    height: 100px;
+    flex: 1;
     background-color: #999;
 }

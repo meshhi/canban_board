@@ -18,11 +18,13 @@ export class Board {
 
         const taskList = document.createElement('div');
         taskList.classList.add('task-list');
+        column.appendChild(taskList);
 
         const addBtn = document.createElement('input');
         addBtn.type = 'button';
         addBtn.classList.add('add-task-btn');
         column.appendChild(addBtn);
+        
         return column;
     }
 
