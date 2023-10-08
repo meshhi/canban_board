@@ -28,7 +28,6 @@ export default class Column {
 
     addTask = () => {
         const task = new Task();
-        console.log(this)
         this.taskList.appendChild(task.task);
     }
 }

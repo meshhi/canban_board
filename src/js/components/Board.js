@@ -4,11 +4,9 @@ export class Board {
     constructor(columnNumber) {
         this.board = this.createBoardElement();
         this.columns = [];
-        for (let i = 0; i < columnNumber; i++) {
-            const boardColumn = new Column();
-            this.columns.push(boardColumn);
-            boardColumn.bindToBoard(this.board);
-        }
+        this.createColumns(columnNumber);
+        this.draggingElement = undefined;
+        this.addDragAndDrop();
     }
 
     createBoardElement = () => {
@@ -17,7 +15,38 @@ export class Board {
         return board;
     }
 
+    createColumns = (columnNumber) => {
+        for (let i = 0; i < columnNumber; i++) {
+            const boardColumn = new Column();
+            this.columns.push(boardColumn);
+            boardColumn.bindToBoard(this.board);
+        }
+    }
+
     bindToDOM = (container) => {
         container.appendChild(this.board);
+    }
+
+    mouseDownHandler = (e) => {
+        if (!e.target.classList.contains('task')) return;
+        this.draggingElement = e.target;
+        e.target.classList.add('dragging');
+    }
+
+    mouseUpHandler = (e) => {
+        if (!this.draggingElement) return;
+        this.draggingElement.classList.remove('dragging');
+        this.draggingElement = undefined;
+    }
+
+    mouseMoveHandler = (e) => {
+        if (!this.draggingElement) return;
+        console.log(e)
+    }
+
+    addDragAndDrop = () => {
+        this.board.addEventListener('mousedown', this.mouseDownHandler);
+        this.board.addEventListener('mousemove', this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
     }
 }
