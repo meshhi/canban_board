@@ -53,7 +53,6 @@ export class Board {
         if (hoverElement.classList.contains('task-list')) {
             hoverElement.appendChild(this.draggingElement);
         }
-        console.log(hoverElement.closest('.task'))
         if (hoverElement.closest('.task')) {
             hoverElement.closest('.task').insertAdjacentElement('beforebegin', this.draggingElement);
         }
