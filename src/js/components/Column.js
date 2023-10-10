@@ -16,7 +16,7 @@ export default class Column {
     
         this.addBtn = document.createElement('div');
         this.addBtn.classList.add('add-task-btn');
-        this.addBtn.textContent = '+ Add Task';
+        this.addBtn.textContent = '+ Add another card';
         this.column.appendChild(this.addBtn);
 
         this.addBtn.addEventListener('click', this.addTask);

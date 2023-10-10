@@ -2,8 +2,7 @@ export default class Task {
     constructor() {
         this.task = document.createElement('div');
 
-        this.task.text = document.createElement('input');
-        this.task.text.type = 'text';
+        this.task.text = document.createElement('textarea');
         this.task.text.classList.add('task-text');
         this.task.appendChild(this.task.text);
 
