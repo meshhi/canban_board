@@ -5,10 +5,10 @@ export class Board {
   offsetLeft = undefined;
   offsetTop = undefined;
 
-  constructor(columnNumber) {
+  constructor(columnNumber, columnNames) {
     this.board = this.createBoardElement();
     this.columns = [];
-    this.createColumns(columnNumber);
+    this.createColumns(columnNumber, columnNames);
     this.draggingElement = undefined;
     this.hoverElement = undefined;
     this.addDragAndDrop();
@@ -21,9 +21,9 @@ export class Board {
     return board;
   };
 
-  createColumns = (columnNumber) => {
+  createColumns = (columnNumber, columnNames) => {
     for (let i = 0; i < columnNumber; i++) {
-      const boardColumn = new Column();
+      const boardColumn = new Column(columnNames[i]);
       this.columns.push(boardColumn);
       boardColumn.bindToBoard(this.board);
     }
