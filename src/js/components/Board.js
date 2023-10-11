@@ -72,11 +72,9 @@ export class Board {
     document.documentElement.classList.remove("force-grabbing");
     if (!this.draggingElement) return;
     this.hoverElement = document.elementFromPoint(e.clientX, e.clientY);
-    if (this.hoverElement.classList.contains("task-list")) {
-      if (this.hoverElement.querySelector('.shadow')) {
-        this.insertElementDependingOnHoverTask(this.shadowElement, this.draggingElement);
-      };
-    }
+    if (this.hoverElement.classList.contains('shadow')) {
+      this.insertElementDependingOnHoverTask(this.shadowElement, this.draggingElement);
+    };
     this.draggingElement.classList.remove("dragging");
     this.draggingElement.querySelector('.task-text').focus();
     this.draggingElement = undefined;
@@ -91,16 +89,13 @@ export class Board {
     document.body.style.userSelect = "none";
     this.hoverElement = document.elementFromPoint(e.clientX, e.clientY);
     this.changeCardPosition(e);
-
     if (this.hoverElement.classList.contains("task-list")) {
-      if (this.hoverElement.querySelector(".shadow")) return;
       this.hoverElement.appendChild(this.shadowElement);
     } else if (this.hoverElement.closest(".task")) {
       this.insertElementDependingOnHoverTask(this.hoverElement, this.shadowElement);
-    } else {
-      this.shadowElement.remove();
+    } else if (this.hoverElement.classList.contains("shadow")) {
+      return
     }
-
   };
 
   addDragAndDrop = () => {
