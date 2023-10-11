@@ -15,15 +15,9 @@ export default class Task {
     this.task.deleteBtn.classList.add("task-delete-btn");
     this.task.appendChild(this.task.deleteBtn);
     this.task.deleteBtn.addEventListener("click", this.deleteTask);
-
-    this.task.text.addEventListener("click", this.addTaskText);
   }
 
   deleteTask = () => {
     this.task.remove();
   };
-
-  addTaskText = (e) => {
-    this.task.text.focus();
-  }
 }

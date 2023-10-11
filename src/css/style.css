@@ -145,3 +145,7 @@ body {
     background-color: #999;
     pointer-events: none;
 }
+
+.shadow:hover {
+    background-color: red;
+}

@@ -39,9 +39,12 @@ export class Board {
   };
 
   insertElementDependingOnHoverTask = (hoverElement, insertElement) => {
-    hoverElement
-      .closest(".task")
-      .insertAdjacentElement("beforebegin", insertElement);
+    const task = hoverElement.closest(".task");
+    if (task.nextSibling) {
+      task.insertAdjacentElement("beforebegin", insertElement);
+    } else {
+      task.insertAdjacentElement("afterend", insertElement);
+    }
   }
 
   mouseDownHandler = (e) => {
@@ -58,7 +61,7 @@ export class Board {
     const rects = this.draggingElement.getBoundingClientRect();
     this.offsetLeft = e.x - rects.left; 
     this.offsetTop = e.y - rects.top;
-    this.draggingElement.focus();
+
     this.draggingElement.classList.add("dragging");
     this.changeCardPosition(e);
 
@@ -75,6 +78,7 @@ export class Board {
       };
     }
     this.draggingElement.classList.remove("dragging");
+    this.draggingElement.querySelector('.task-text').focus();
     this.draggingElement = undefined;
     this.offsetLeft = undefined;
     this.offsetTop = undefined;
@@ -89,13 +93,12 @@ export class Board {
     this.changeCardPosition(e);
 
     if (this.hoverElement.classList.contains("task-list")) {
-      if (this.hoverElement.querySelector(".shadow")) {
-        return
-      };
+      if (this.hoverElement.querySelector(".shadow")) return;
       this.hoverElement.appendChild(this.shadowElement);
-    }
-    if (this.hoverElement.closest(".task")) {
+    } else if (this.hoverElement.closest(".task")) {
       this.insertElementDependingOnHoverTask(this.hoverElement, this.shadowElement);
+    } else {
+      this.shadowElement.remove();
     }
 
   };
@@ -104,17 +107,5 @@ export class Board {
     this.board.addEventListener("mousedown", this.mouseDownHandler);
     this.board.addEventListener("mousemove", this.mouseMoveHandler);
     document.addEventListener("mouseup", this.mouseUpHandler);
-
-    document.addEventListener("click", (e) => {
-      // console.log('click')
-      // console.log(e.target)
-      // if (e.target.classList.contains('task-list')) {
-      //   e.target.querySelector('.task-text').focus();
-      //   if (this.draggingElement) {
-      //     this.draggingElement.querySelector('.task-text').focus();
-      //   }
-      // }
-    });
-
   };
 }
