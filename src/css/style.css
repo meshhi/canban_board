@@ -85,30 +85,25 @@ body {
 
 .task {
     width: 100%;
+    height: auto;
     min-height: 150px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: rgba(9, 30, 66, 0.15) 0px 0.1rem 0.1rem 0px;
     margin-bottom: 3%;
+
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(10, 1fr);
-    height: auto;
-    
-}
-
-.shadow {
-    background-color: #999;
-    pointer-events: none;
 }
 
 .task-text {
-    grid-row: 2 / 4;
+    grid-row: 1 / 4;
     grid-column: 1 / 11;
-    line-height: 100%;
-    font-size: 1rem;
     height: auto;
     padding: 1rem;
+    line-height: 100%;
+    font-size: 1rem;
     resize: none;
     cursor: pointer;
 }
@@ -126,6 +121,12 @@ body {
     background-color: inherit;
     background-repeat: no-repeat;
     cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+.task-delete-btn:hover {
+    opacity: 1;
 }
 
 .dragging {
@@ -138,4 +139,9 @@ body {
 
 .force-grabbing {
     cursor: grabbing !important;
+}
+
+.shadow {
+    background-color: #999;
+    pointer-events: none;
 }

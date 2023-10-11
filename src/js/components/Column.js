@@ -29,5 +29,7 @@ export default class Column {
   addTask = () => {
     const task = new Task();
     this.taskList.appendChild(task.task);
+
+    task.task.text.value = Math.random(Math.floor())
   };
 }
