@@ -97,6 +97,11 @@ body {
     
 }
 
+.shadow {
+    background-color: #999;
+    pointer-events: none;
+}
+
 .task-text {
     grid-row: 2 / 4;
     grid-column: 1 / 11;
@@ -131,6 +136,6 @@ body {
     pointer-events: none;
 }
 
-.force-pointer {
-    cursor: pointer !important;
+.force-grabbing {
+    cursor: grabbing !important;
 }

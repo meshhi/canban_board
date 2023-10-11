@@ -1,7 +1,11 @@
 export default class Task {
-  constructor() {
+  constructor(isShadow) {
     this.task = document.createElement("div");
-
+    this.task.classList.add("task");
+    if (isShadow) {
+      this.task.classList.add("shadow");
+      return
+    }
     this.task.text = document.createElement("textarea");
     this.task.text.classList.add("task-text");
     this.task.appendChild(this.task.text);
@@ -12,8 +16,9 @@ export default class Task {
     this.task.appendChild(this.task.deleteBtn);
     this.task.deleteBtn.addEventListener("click", this.deleteTask);
 
-    this.task.classList.add("task");
+
     this.task.addEventListener("click", this.addTaskText);
+
   }
 
   deleteTask = () => {
